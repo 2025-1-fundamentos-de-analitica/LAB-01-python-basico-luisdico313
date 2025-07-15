@@ -23,3 +23,6 @@ def pregunta_01():
             total = total + int(col[1])
     
     return total
+
+
+
