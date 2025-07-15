@@ -26,3 +26,36 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+
+    # Leer el archivo línea por línea
+    with open('files\input\data.csv', 'r') as file:
+        lines = file.readlines()
+
+    # Diccionarios para almacenar los valores mínimos y máximos por clave
+    min_values = {}
+    max_values = {}
+
+    # Procesar cada línea
+    for line in lines:
+        parts = line.strip().split('\t')
+        if len(parts) >= 5:  # Asegurar que la línea tenga al menos 5 columnas
+            dict_str = parts[4]  # Quinta columna (diccionario)
+            # Procesar cada par clave-valor en la quinta columna
+            for pair in dict_str.split(','):
+                if ':' in pair:
+                    key, value_str = pair.split(':')
+                    value = int(value_str)
+                    # Actualizar el mínimo
+                    if key not in min_values or value < min_values[key]:
+                        min_values[key] = value
+                    # Actualizar el máximo
+                    if key not in max_values or value > max_values[key]:
+                        max_values[key] = value
+
+    # Generar lista de tuplas (clave, min, max) ordenada alfabéticamente
+    result = sorted(
+        [(key, min_values[key], max_values[key]) for key in min_values],
+        key=lambda x: x[0]
+    )
+
+    return result

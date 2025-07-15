@@ -25,3 +25,32 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+
+
+
+    # Leer el archivo línea por línea
+    with open('files\input\data.csv', 'r') as file:
+        lines = file.readlines()
+
+    # Diccionario para almacenar las letras agrupadas por valor de la columna 2
+    value_to_letters = {}
+
+    # Procesar cada línea
+    for line in lines:
+        parts = line.strip().split('\t')
+        if len(parts) >= 3:  # Asegurar que haya al menos 3 columnas
+            col1 = parts[0]  # Letra (columna 1)
+            col2 = int(parts[1])  # Valor numérico (columna 2)
+            
+            # Agregar la letra al grupo correspondiente al valor de col2
+            if col2 not in value_to_letters:
+                value_to_letters[col2] = []
+            value_to_letters[col2].append(col1)
+
+    # Generar lista de tuplas (valor_col2, lista_letras) ordenada por valor_col2
+    result = sorted([(value, letters) for value, letters in value_to_letters.items()])
+
+    return result
+
+
+

@@ -16,3 +16,31 @@ def pregunta_11():
 
 
     """
+
+
+
+    # Leer el archivo línea por línea
+    with open('files\input\data.csv', 'r') as file:
+        lines = file.readlines()
+
+    # Diccionario para almacenar las sumas por letra de la columna 4
+    sum_dict = {}
+
+    # Procesar cada línea
+    for line in lines:
+        parts = line.strip().split('\t')
+        if len(parts) >= 5:  # Asegurar que haya al menos 5 columnas
+            value_col2 = int(parts[1])  # Valor de la columna 2
+            letters_col4 = parts[3].split(',')  # Letras de la columna 4
+            
+            # Actualizar sumas para cada letra en la columna 4
+            for letter in letters_col4:
+                if letter in sum_dict:
+                    sum_dict[letter] += value_col2
+                else:
+                    sum_dict[letter] = value_col2
+
+    # Ordenar el diccionario alfabéticamente por clave
+    sorted_sum_dict = {k: sum_dict[k] for k in sorted(sum_dict)}
+
+    return sorted_sum_dict
