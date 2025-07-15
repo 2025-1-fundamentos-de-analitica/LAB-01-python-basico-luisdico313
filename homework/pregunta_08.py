@@ -31,7 +31,7 @@ def pregunta_08():
 
 
     # Leer el archivo línea por línea
-    with open('files\input\data.csv', 'r') as file:
+    with open("files\input\data.csv", "r") as file:
         lines = file.readlines()
 
     # Diccionario para almacenar las letras únicas por valor de la columna 2

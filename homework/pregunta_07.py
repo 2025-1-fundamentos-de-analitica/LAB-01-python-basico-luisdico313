@@ -29,7 +29,7 @@ def pregunta_07():
 
 
     # Leer el archivo línea por línea
-    with open('files\input\data.csv', 'r') as file:
+    with open("files\input\data.csv", "r") as file:
         lines = file.readlines()
 
     # Diccionario para almacenar las letras agrupadas por valor de la columna 2
